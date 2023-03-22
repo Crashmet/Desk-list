@@ -38,8 +38,6 @@ export default {
     }
   }
 };
-// const users = ref<Utilizer[]>(
-//   JSON.parse(localStorage.getItem("users") || "[]")
 </script>
 
 <style scoped>

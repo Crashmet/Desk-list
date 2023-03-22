@@ -126,6 +126,14 @@ export default {
     };
   },
 
+  created() {
+    const dataUsers = localStorage.getItem("users-list");
+
+    if (dataUsers) {
+      this.dataUsers = JSON.parse(dataUsers);
+    }
+  },
+
   methods: {
     sortByUserName(users) {
       users.sort((a, b) => {
@@ -169,6 +177,12 @@ export default {
           el.subordinates.push(item);
         }
       });
+    }
+  },
+
+  watch: {
+    dataUsers() {
+      localStorage.setItem("users-list", JSON.stringify(this.dataUsers));
     }
   }
 };
