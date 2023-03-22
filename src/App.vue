@@ -9,7 +9,11 @@
       @addNewUser="addNewUser"
       @handelCloseModal="isShowModal = false"
     />
-    <Table :users="dataUsers" />
+    <Table
+      :users="dataUsers"
+      @sortByUserName="sortByUserName"
+      @sortByUserPhone="sortByUserPhone"
+    />
   </div>
 </template>
 
@@ -32,15 +36,87 @@ export default {
 
       dataUsers: [
         {
-          name: "Shamil",
-          phone: "+7 999 999-99-99",
+          name: "Шамиль",
+          phone: "+7 996 999-99-52",
           id: "1",
           chief: false,
           subordinates: [
             {
-              name: "renata",
-              phone: "+7 999 999-99-99",
-              id: "2",
+              name: "Рената",
+              phone: "+7 999 999-99-96",
+              id: "1.1",
+              chief: false,
+              subordinates: []
+            },
+            {
+              name: "Алина",
+              phone: "+7 899 999-99-34",
+              id: "1.2",
+              chief: false,
+              subordinates: []
+            },
+            {
+              name: "Яна",
+              phone: "+7 993 999-99-92",
+              id: "1.3",
+              chief: false,
+              subordinates: []
+            }
+          ]
+        },
+        {
+          name: "Егор",
+          phone: "+7 996 999-34-52",
+          id: "4",
+          chief: false,
+          subordinates: [
+            {
+              name: "Рената",
+              phone: "+7 999 999-99-96",
+              id: "4.1",
+              chief: false,
+              subordinates: []
+            },
+            {
+              name: "Алина",
+              phone: "+7 899 999-99-34",
+              id: "4.2",
+              chief: false,
+              subordinates: []
+            },
+            {
+              name: "Яна",
+              phone: "+7 993 999-99-92",
+              id: "4.3",
+              chief: false,
+              subordinates: []
+            }
+          ]
+        },
+        {
+          name: "Артем",
+          phone: "+7 999 999-34-34",
+          id: "2sads",
+          chief: false,
+          subordinates: [
+            {
+              name: "Рената",
+              phone: "+7 999 999-99-96",
+              id: "2.1",
+              chief: false,
+              subordinates: []
+            },
+            {
+              name: "Алина",
+              phone: "+7 899 999-99-34",
+              id: "3.2",
+              chief: false,
+              subordinates: []
+            },
+            {
+              name: "Яна",
+              phone: "+7 993 999-99-92",
+              id: "4.3",
               chief: false,
               subordinates: []
             }
@@ -51,6 +127,26 @@ export default {
   },
 
   methods: {
+    sortByUserName(users) {
+      users.sort((a, b) => {
+        if (a.subordinates.length) {
+          this.sortByUserName(a.subordinates);
+          this.sortByUserName(b.subordinates);
+        }
+        return a.name.localeCompare(b.name);
+      });
+    },
+
+    sortByUserPhone(users) {
+      users.sort((a, b) => {
+        if (a.subordinates.length) {
+          this.sortByUserName(a.subordinates);
+          this.sortByUserName(b.subordinates);
+        }
+        return a.phone.localeCompare(b.phone);
+      });
+    },
+
     handelShowModal() {
       this.isShowModal = !this.isShowModal;
     },
@@ -80,6 +176,7 @@ export default {
 
 <style>
 * {
+  font-family: "open-sans", sans-serif;
   margin: 0;
   padding: 0;
   background-color: rgb(255, 255, 255);

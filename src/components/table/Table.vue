@@ -2,10 +2,10 @@
   <div>
     <table>
       <tr>
-        <th @click="sortByUserName(users)">
+        <th @click="sortByUserName">
           Имя
         </th>
-        <th @click="sortByUserPhone(users)">
+        <th @click="sortByUserPhone">
           Телефон
         </th>
       </tr>
@@ -27,32 +27,24 @@ export default {
     users: {
       type: Array
     }
+  },
+  methods: {
+    sortByUserName() {
+      this.$emit("sortByUserName", this.users);
+    },
+
+    sortByUserPhone() {
+      this.$emit("sortByUserPhone", this.users);
+    }
   }
 };
 // const users = ref<Utilizer[]>(
 //   JSON.parse(localStorage.getItem("users") || "[]")
-
-// function sortByUserName(users: Utilizer[]) {
-//   users.sort((a, b) => {
-//     if (a.subordinates.length) {
-//       sortByUserName(a.subordinates);
-//     }
-//     return a.name.localeCompare(b.name);
-//   });
-// }
-
-// function sortByUserPhone(users: Utilizer[]) {
-//   users.sort((a, b) => {
-//     if (a.subordinates.length) {
-//       sortByUserName(a.subordinates);
-//     }
-//     return a.phone.localeCompare(b.phone);
-//   });
-// }
 </script>
 
 <style scoped>
 table {
+  margin-bottom: 20px;
   width: 100%;
   border-collapse: collapse;
   font-size: 14px;

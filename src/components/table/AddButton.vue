@@ -28,7 +28,7 @@ export default {
 <style scoped>
 
 .add-btn{
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   padding: 12px 20px;
   color: white;
   font-size: 16px;
@@ -36,7 +36,12 @@ export default {
   background-color: #4caf50;
   border: 1px solid #ccc;
   border-radius: 16px;
-  
+}
+
+.add-btn:hover,
+.add-btn:active,
+.add-btn:focus {
+  background: #43a047;
 }
 
 </style>
