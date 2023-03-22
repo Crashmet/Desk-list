@@ -1,6 +1,8 @@
 # vue-test
 
-> A Vue.js project
+> Vue.js project 
+
+[Click to see exercise](https://docs.google.com/document/d/1Crkyr_BYp0wX2SPvsWx0ElkFWJQ5VINyCSsmd7vU8kw/edit#heading=h.kah3mu76yu2a)
 
 ## Build Setup
 
