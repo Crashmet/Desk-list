@@ -1,7 +1,10 @@
 <template>
-  <div class="container">
+  <div id="app" class="container">
     <h1 class="header-title">Список родителей</h1>
-    <add-button :isShowModal="isShowModal" @handelShowModal="handelShowModal" />
+    <add-modal-button
+      :isShowModal="isShowModal"
+      @handelShowModal="handelShowModal"
+    />
 
     <Modal
       v-if="isShowModal"
@@ -18,14 +21,14 @@
 </template>
 
 <script>
-import AddButton from "./components/table/AddButton.vue";
+import AddModalButton from "./components/table/AddModalButton.vue";
 import Table from "./components/table/Table.vue";
 import Modal from "./components/table/Modal.vue";
 
 export default {
   name: "App",
   components: {
-    AddButton,
+    AddModalButton,
     Table,
     Modal
   },

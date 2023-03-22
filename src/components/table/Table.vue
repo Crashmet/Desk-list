@@ -58,10 +58,10 @@ th {
   color: white;
   font-weight: bold;
 }
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-tr:hover {
-  background-color: #ddd;
+
+th:hover,
+th:active,
+th:focus {
+  background: #328136;
 }
 </style>

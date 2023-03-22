@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "AddButton",
+  name: "AddModalButton",
   props: {
     isShowModal: {
       type: Boolean
@@ -39,9 +39,8 @@ export default {
 }
 
 .add-btn:hover,
-.add-btn:active,
-.add-btn:focus {
-  background: #43a047;
+.add-btn:active {
+  background: #328136;
 }
 
 </style>

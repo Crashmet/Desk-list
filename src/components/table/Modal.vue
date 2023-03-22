@@ -173,7 +173,7 @@ export default {
 .form__button_add:hover,
 .form__button_add:active,
 .form__button_add:focus {
-  background: #43a047;
+  background: #328136;
 }
 .form .message {
   margin: 15px 0 0;
