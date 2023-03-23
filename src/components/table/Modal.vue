@@ -175,20 +175,23 @@ export default {
 .form__button_add:focus {
   background: #328136;
 }
+
 .form .message {
   margin: 15px 0 0;
   color: #b3b3b3;
   font-size: 12px;
 }
+
 .form .message a {
   color: #4caf50;
   text-decoration: none;
 }
+
 .form .register-form {
   display: none;
 }
+
 body {
-  background: #76b852; /* fallback for old browsers */
   background: rgb(141, 194, 111);
   background: linear-gradient(
     90deg,
