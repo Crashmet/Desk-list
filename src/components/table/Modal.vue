@@ -37,11 +37,11 @@
           />
         </div>
 
-        <div>
+        <div v-if="allUsers.length > 0">
           <label class="form__input_label">Начальник</label>
           <select class="form__input" name="chief" id="chief" v-model="chief">
             <option value="null"></option>
-            <option v-for="user in users" :value="user.name" :key="user.id">
+            <option v-for="user in allUsers" :value="user" :key="user.id">
               {{ user.name }}
             </option>
           </select>
@@ -65,24 +65,42 @@ export default {
       type: Array
     }
   },
+
   data() {
     return {
       name: "",
       phone: "",
-      chief: null
+      chief: null,
+
+      allUsers: []
     };
   },
+
+  created() {
+    this.setAllUsers(this.users);
+  },
+
   methods: {
+    setAllUsers(users) {
+      users.map(el => {
+        if (el.subordinates.length > 0) {
+          this.setAllUsers(el.subordinates);
+        }
+        return this.allUsers.push({ name: el.name, id: el.id });
+      });
+    },
+
     handelCloseModal() {
       this.$emit("handelCloseModal");
     },
 
-    handleFormSubmit(data) {
+    handleFormSubmit() {
       const newUser = {
         name: this.name,
         phone: this.phone,
         id: uuidv4(),
-        chief: this.chief,
+        chief: this.chief.name,
+        chiefId: this.chief.id,
         subordinates: []
       };
 
@@ -91,6 +109,15 @@ export default {
       this.name = "";
       this.phone = "";
       this.chief = null;
+
+      this.allUsers = [];
+      this.setAllUsers(this.users);
+    }
+  },
+
+  watch: {
+    users() {
+      console.log(this.allUsers);
     }
   }
 };

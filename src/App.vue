@@ -14,6 +14,8 @@
     />
     <Table
       :users="dataUsers"
+      :isByUserNameDown="isByUserNameDown"
+      :isByUserPhoneDown="isByUserPhoneDown"
       @sortByUserName="sortByUserName"
       @sortByUserPhone="sortByUserPhone"
     />
@@ -36,6 +38,8 @@ export default {
   data() {
     return {
       isShowModal: false,
+      isByUserNameDown: false,
+      isByUserPhoneDown: false,
 
       dataUsers: [
         {
@@ -79,20 +83,6 @@ export default {
               id: "4.1",
               chief: false,
               subordinates: []
-            },
-            {
-              name: "Алина",
-              phone: "+7 899 999-99-34",
-              id: "4.2",
-              chief: false,
-              subordinates: []
-            },
-            {
-              name: "Яна",
-              phone: "+7 993 999-99-92",
-              id: "4.3",
-              chief: false,
-              subordinates: []
             }
           ]
         },
@@ -101,29 +91,7 @@ export default {
           phone: "+7 999 999-34-34",
           id: "2sads",
           chief: false,
-          subordinates: [
-            {
-              name: "Рената",
-              phone: "+7 999 999-99-96",
-              id: "2.1",
-              chief: false,
-              subordinates: []
-            },
-            {
-              name: "Алина",
-              phone: "+7 899 999-99-34",
-              id: "3.2",
-              chief: false,
-              subordinates: []
-            },
-            {
-              name: "Яна",
-              phone: "+7 993 999-99-92",
-              id: "4.3",
-              chief: false,
-              subordinates: []
-            }
-          ]
+          subordinates: []
         }
       ]
     };
@@ -139,22 +107,78 @@ export default {
 
   methods: {
     sortByUserName(users) {
+      this.isByUserNameDown = this.isByUserNameDown ? false : true;
+
+      if (this.isByUserNameDown) {
+        this.sortByUserNameDown(users);
+      } else {
+        this.sortByUserNameUp(users);
+      }
+    },
+
+    sortByUserNameDown(users) {
       users.sort((a, b) => {
-        if (a.subordinates.length) {
-          this.sortByUserName(a.subordinates);
-          this.sortByUserName(b.subordinates);
+        if (a.subordinates.length > 0) {
+          this.sortByUserNameDown(a.subordinates);
         }
+
+        if (b.subordinates.length > 0) {
+          this.sortByUserNameDown(b.subordinates);
+        }
+
         return a.name.localeCompare(b.name);
       });
     },
 
-    sortByUserPhone(users) {
+    sortByUserNameUp(users) {
       users.sort((a, b) => {
-        if (a.subordinates.length) {
-          this.sortByUserName(a.subordinates);
-          this.sortByUserName(b.subordinates);
+        if (a.subordinates.length > 0) {
+          this.sortByUserNameUp(a.subordinates);
         }
+
+        if (b.subordinates.length > 0) {
+          this.sortByUserNameUp(b.subordinates);
+        }
+
+        return b.name.localeCompare(a.name);
+      });
+    },
+
+    sortByUserPhone(users) {
+      this.isByUserPhoneDown = this.isByUserPhoneDown ? false : true;
+
+      if (this.isByUserPhoneDown) {
+        this.sortByUserPhoneDown(users);
+      } else {
+        this.sortByUserPhoneUp(users);
+      }
+    },
+
+    sortByUserPhoneDown(users) {
+      users.sort((a, b) => {
+        if (a.subordinates.length > 0) {
+          this.sortByUserPhoneDown(a.subordinates);
+        }
+
+        if (b.subordinates.length > 0) {
+          this.sortByUserPhoneDown(b.subordinates);
+        }
+
         return a.phone.localeCompare(b.phone);
+      });
+    },
+
+    sortByUserPhoneUp(users) {
+      users.sort((a, b) => {
+        if (a.subordinates.length > 0) {
+          this.sortByUserPhoneUp(a.subordinates);
+        }
+
+        if (b.subordinates.length > 0) {
+          this.sortByUserPhoneUp(b.subordinates);
+        }
+
+        return b.phone.localeCompare(a.phone);
       });
     },
 
@@ -163,28 +187,36 @@ export default {
     },
 
     addNewUser(item) {
-      const { chief } = item;
+      const { chief, chiefId } = item;
+
+      console.log(chiefId);
 
       if (chief) {
-        this.addNewSubordinates(item);
+        this.addNewSubordinates(this.dataUsers, item);
         return;
       }
 
       this.dataUsers.push(item);
+
+      this.updateLocalStorage();
     },
 
-    addNewSubordinates(item) {
-      console.log(item);
-      this.dataUsers.forEach(el => {
-        if (el.name === item.chief) {
+    addNewSubordinates(data, item) {
+      data.forEach(el => {
+        if (el.name === item.chief && el.id === item.chiefId) {
           el.subordinates.push(item);
+          return;
+        }
+
+        if (el.subordinates.length > 0) {
+          this.addNewSubordinates(el.subordinates, item);
         }
       });
-    }
-  },
 
-  watch: {
-    dataUsers() {
+      this.updateLocalStorage();
+    },
+
+    updateLocalStorage() {
       localStorage.setItem("users-list", JSON.stringify(this.dataUsers));
     }
   }
@@ -196,13 +228,12 @@ export default {
   font-family: "open-sans", sans-serif;
   margin: 0;
   padding: 0;
-  background-color: rgb(255, 255, 255);
 }
 
 .container {
   margin: 0 auto;
   padding: 50px;
-  max-width: 600px;
+  max-width: 900px;
   text-align: center;
 }
 

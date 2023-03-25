@@ -1,7 +1,8 @@
 <template>
   <tr>
     <td>
-      {{ user.name }}
+      <div class="table-name">{{ user.name }}</div>
+
       <User v-for="user in user.subordinates" :key="user.id" :user="user" />
     </td>
     <td>
@@ -24,6 +25,10 @@ export default {
 </script>
 
 <style scoped>
+.table-name {
+  padding: 10px;
+}
+
 th,
 td {
   border: 1px solid #ccc;
