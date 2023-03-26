@@ -38,8 +38,8 @@ export default {
   },
   data() {
     return {
-      chevronNameClass: "table-sort-neutral",
-      chevronPhoneClass: "table-sort-neutral"
+      chevronNameClass: "js-table-sort-neutral",
+      chevronPhoneClass: "js-table-sort-neutral"
     };
   },
 
@@ -55,14 +55,14 @@ export default {
   watch: {
     isByUserNameDown() {
       this.chevronNameClass = this.isByUserNameDown
-        ? "table-sort-down"
-        : "table-sort-up";
+        ? "js-table-sort-down"
+        : "js-table-sort-up";
     },
 
     isByUserPhoneDown() {
       this.chevronPhoneClass = this.isByUserPhoneDown
-        ? "table-sort-down"
-        : "table-sort-up";
+        ? "js-table-sort-down"
+        : "js-table-sort-up";
     }
   }
 };
@@ -98,7 +98,7 @@ th:focus {
   margin-left: 15px;
 }
 
-.table-sort-neutral {
+.js-table-sort-neutral {
   position: absolute;
   background-image: none;
   bottom: 50%;
@@ -110,7 +110,7 @@ th:focus {
   transform: rotate(-45deg);
 }
 
-.table-sort-down {
+.js-table-sort-down {
   position: absolute;
   background-image: none;
   bottom: 50%;
@@ -122,7 +122,7 @@ th:focus {
   transform: rotate(-45deg);
 }
 
-.table-sort-up {
+.js-table-sort-up {
   position: absolute;
   background-image: none;
   bottom: 30%;
