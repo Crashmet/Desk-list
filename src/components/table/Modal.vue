@@ -106,7 +106,6 @@ export default {
         return `${this.users.length + 1}.`;
       } else {
         this.searchChief(this.users);
-        console.log(this.foundCheif);
         return `${this.foundCheif.marker}${this.foundCheif.subordinates.length +
           1}.`;
       }
@@ -124,8 +123,6 @@ export default {
 
     handleFormSubmit() {
       const marker = this.addMarkerUser();
-
-      console.log(marker);
 
       const newUser = {
         marker,
