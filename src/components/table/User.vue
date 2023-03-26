@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      <div class="table-name">{{ user.name }}</div>
+      <div class="table-name">{{ user.marker }} {{ user.name }}</div>
 
       <User v-for="user in user.subordinates" :key="user.id" :user="user" />
     </td>

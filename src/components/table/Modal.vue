@@ -40,9 +40,9 @@
         <div v-if="allUsers.length > 0">
           <label class="form__input_label">Начальник</label>
           <select class="form__input" name="chief" id="chief" v-model="chief">
-            <option value="null"></option>
+            <option :value="null"></option>
             <option v-for="user in allUsers" :value="user" :key="user.id">
-              {{ user.name }}
+              {{ user.marker }} {{ user.name }}
             </option>
           </select>
         </div>
@@ -73,6 +73,8 @@ export default {
       phone: "",
       chief: null,
 
+      foundCheif: null,
+
       allUsers: []
     };
   },
@@ -87,7 +89,11 @@ export default {
         if (el.subordinates.length > 0) {
           this.setAllUsers(el.subordinates);
         }
-        return this.allUsers.push({ name: el.name, id: el.id });
+        return this.allUsers.push({
+          marker: el.marker,
+          name: el.name,
+          id: el.id
+        });
       });
     },
 
@@ -97,22 +103,32 @@ export default {
 
     addMarkerUser() {
       if (this.chief === null) {
-        return this.users.length;
+        return `${this.users.length + 1}.`;
       } else {
-        this.users.forEach(el => {
-          if (el.subordinates.length > 0) {
-            this.setAllUsers(el.subordinates);
-          }
-          return this.allUsers.push({ name: el.name, id: el.id });
-        });
+        this.searchChief(this.users);
+        console.log(this.foundCheif);
+        return `${this.foundCheif.marker}${this.foundCheif.subordinates.length +
+          1}.`;
       }
     },
 
+    searchChief(users) {
+      users.forEach(el => {
+        if (this.chief.id === el.id) {
+          return (this.foundCheif = el);
+        } else if (el.subordinates.length > 0) {
+          this.searchChief(el.subordinates);
+        }
+      });
+    },
+
     handleFormSubmit() {
-      // let marker = addMarkerUser();
+      const marker = this.addMarkerUser();
+
+      console.log(marker);
 
       const newUser = {
-        // marker,
+        marker,
         name: this.name,
         phone: this.phone,
         id: uuidv4(),
