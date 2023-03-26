@@ -41,59 +41,7 @@ export default {
       isByUserNameDown: false,
       isByUserPhoneDown: false,
 
-      dataUsers: [
-        {
-          name: "Шамиль",
-          phone: "+7 996 999-99-52",
-          id: "1",
-          chief: false,
-          subordinates: [
-            {
-              name: "Рената",
-              phone: "+7 999 999-99-96",
-              id: "1.1",
-              chief: false,
-              subordinates: []
-            },
-            {
-              name: "Алина",
-              phone: "+7 899 999-99-34",
-              id: "1.2",
-              chief: false,
-              subordinates: []
-            },
-            {
-              name: "Яна",
-              phone: "+7 993 999-99-92",
-              id: "1.3",
-              chief: false,
-              subordinates: []
-            }
-          ]
-        },
-        {
-          name: "Егор",
-          phone: "+7 996 999-34-52",
-          id: "4",
-          chief: false,
-          subordinates: [
-            {
-              name: "Рената",
-              phone: "+7 999 999-99-96",
-              id: "4.1",
-              chief: false,
-              subordinates: []
-            }
-          ]
-        },
-        {
-          name: "Артем",
-          phone: "+7 999 999-34-34",
-          id: "2sads",
-          chief: false,
-          subordinates: []
-        }
-      ]
+      dataUsers: []
     };
   },
 
@@ -110,9 +58,17 @@ export default {
       this.isByUserNameDown = this.isByUserNameDown ? false : true;
 
       if (this.isByUserNameDown) {
-        this.sortByUserNameDown(users);
+        if (users.length > 1) {
+          this.sortByUserNameDown(users);
+        } else {
+          this.sortByUserNameDown(users[0].subordinates);
+        }
       } else {
-        this.sortByUserNameUp(users);
+        if (users.length > 1) {
+          this.sortByUserNameUp(users);
+        } else {
+          this.sortByUserNameUp(users[0].subordinates);
+        }
       }
     },
 
@@ -148,9 +104,17 @@ export default {
       this.isByUserPhoneDown = this.isByUserPhoneDown ? false : true;
 
       if (this.isByUserPhoneDown) {
-        this.sortByUserPhoneDown(users);
+        if (users.length > 1) {
+          this.sortByUserPhoneDown(users);
+        } else {
+          this.sortByUserPhoneDown(users[0].subordinates);
+        }
       } else {
-        this.sortByUserPhoneUp(users);
+        if (users.length > 1) {
+          this.sortByUserPhoneUp(users);
+        } else {
+          this.sortByUserPhoneUp(users[0].subordinates);
+        }
       }
     },
 
@@ -187,11 +151,9 @@ export default {
     },
 
     addNewUser(item) {
-      const { chief, chiefId } = item;
+      const { chief } = item;
 
-      console.log(chiefId);
-
-      if (chief) {
+      if (chief !== null) {
         this.addNewSubordinates(this.dataUsers, item);
         return;
       }
@@ -203,7 +165,7 @@ export default {
 
     addNewSubordinates(data, item) {
       data.forEach(el => {
-        if (el.name === item.chief && el.id === item.chiefId) {
+        if (el.name === item.chief.name && el.id === item.chief.id) {
           el.subordinates.push(item);
           return;
         }

@@ -60,6 +60,7 @@ import { v4 as uuidv4 } from "uuid";
 
 export default {
   name: "Modal",
+
   props: {
     users: {
       type: Array
@@ -94,13 +95,28 @@ export default {
       this.$emit("handelCloseModal");
     },
 
+    addMarkerUser() {
+      if (this.chief === null) {
+        return this.users.length;
+      } else {
+        this.users.forEach(el => {
+          if (el.subordinates.length > 0) {
+            this.setAllUsers(el.subordinates);
+          }
+          return this.allUsers.push({ name: el.name, id: el.id });
+        });
+      }
+    },
+
     handleFormSubmit() {
+      // let marker = addMarkerUser();
+
       const newUser = {
+        // marker,
         name: this.name,
         phone: this.phone,
         id: uuidv4(),
-        chief: this.chief.name,
-        chiefId: this.chief.id,
+        chief: this.chief,
         subordinates: []
       };
 
@@ -112,12 +128,6 @@ export default {
 
       this.allUsers = [];
       this.setAllUsers(this.users);
-    }
-  },
-
-  watch: {
-    users() {
-      console.log(this.allUsers);
     }
   }
 };
