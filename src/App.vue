@@ -58,21 +58,19 @@ export default {
       this.isByUserNameDown = this.isByUserNameDown ? false : true;
 
       if (this.isByUserNameDown) {
-        if (users.length > 1) {
-          this.sortByUserNameDown(users);
-        } else {
-          this.sortByUserNameDown(users[0].subordinates);
-        }
+        this.sortByUserNameDown(users);
       } else {
-        if (users.length > 1) {
-          this.sortByUserNameUp(users);
-        } else {
-          this.sortByUserNameUp(users[0].subordinates);
-        }
+        this.sortByUserNameUp(users);
       }
     },
 
     sortByUserNameDown(users) {
+      if (users.length === 1) {
+        if (users[0].subordinates.length > 0) {
+          this.sortByUserNameDown(users[0].subordinates);
+        }
+      }
+
       users.sort((a, b) => {
         if (a.subordinates.length > 0) {
           this.sortByUserNameDown(a.subordinates);
@@ -87,6 +85,12 @@ export default {
     },
 
     sortByUserNameUp(users) {
+      if (users.length === 1) {
+        if (users[0].subordinates.length > 0) {
+          this.sortByUserNameUp(users[0].subordinates);
+        }
+      }
+
       users.sort((a, b) => {
         if (a.subordinates.length > 0) {
           this.sortByUserNameUp(a.subordinates);
@@ -104,21 +108,19 @@ export default {
       this.isByUserPhoneDown = this.isByUserPhoneDown ? false : true;
 
       if (this.isByUserPhoneDown) {
-        if (users.length > 1) {
-          this.sortByUserPhoneDown(users);
-        } else {
-          this.sortByUserPhoneDown(users[0].subordinates);
-        }
+        this.sortByUserPhoneDown(users);
       } else {
-        if (users.length > 1) {
-          this.sortByUserPhoneUp(users);
-        } else {
-          this.sortByUserPhoneUp(users[0].subordinates);
-        }
+        this.sortByUserPhoneUp(users);
       }
     },
 
     sortByUserPhoneDown(users) {
+      if (users.length === 1) {
+        if (users[0].subordinates.length > 0) {
+          this.sortByUserPhoneDown(users[0].subordinates);
+        }
+      }
+
       users.sort((a, b) => {
         if (a.subordinates.length > 0) {
           this.sortByUserPhoneDown(a.subordinates);
@@ -133,6 +135,12 @@ export default {
     },
 
     sortByUserPhoneUp(users) {
+      if (users.length === 1) {
+        if (users[0].subordinates.length > 0) {
+          this.sortByUserPhoneUp(users[0].subordinates);
+        }
+      }
+
       users.sort((a, b) => {
         if (a.subordinates.length > 0) {
           this.sortByUserPhoneUp(a.subordinates);
