@@ -69,6 +69,7 @@ export default {
         if (users[0].subordinates.length > 0) {
           this.sortByUserNameDown(users[0].subordinates);
         }
+        return;
       }
 
       users.sort((a, b) => {
@@ -89,6 +90,7 @@ export default {
         if (users[0].subordinates.length > 0) {
           this.sortByUserNameUp(users[0].subordinates);
         }
+        return;
       }
 
       users.sort((a, b) => {
@@ -119,6 +121,7 @@ export default {
         if (users[0].subordinates.length > 0) {
           this.sortByUserPhoneDown(users[0].subordinates);
         }
+        return;
       }
 
       users.sort((a, b) => {
@@ -139,6 +142,7 @@ export default {
         if (users[0].subordinates.length > 0) {
           this.sortByUserPhoneUp(users[0].subordinates);
         }
+        return;
       }
 
       users.sort((a, b) => {
