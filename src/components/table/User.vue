@@ -1,7 +1,7 @@
 <template>
   <tr>
     <td>
-      <div class="table-name">{{ user.marker }} {{ user.name }}</div>
+      <div class="table-name">{{ userName }}</div>
 
       <User v-for="user in user.subordinates" :key="user.id" :user="user" />
     </td>
@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { computed } from "vue";
 export default {
   name: "User",
   components: {},
@@ -19,6 +20,11 @@ export default {
     user: {
       type: Object,
       default: () => ({})
+    }
+  },
+  computed: {
+    userName() {
+      return this.user.marker + " " + this.user.name;
     }
   }
 };

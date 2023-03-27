@@ -1,6 +1,6 @@
 <template>
   <button @click="handelShowModal" class="add-btn">
-    {{ isShowModal ? "Отменить" : "Добавить" }}
+    {{ btnText }}
   </button>
 </template>
 
@@ -10,6 +10,11 @@ export default {
   props: {
     isShowModal: {
       type: Boolean
+    }
+  },
+  computed: {
+    btnText() {
+      return this.isShowModal ? "Отменить" : "Добавить";
     }
   },
   methods: {
