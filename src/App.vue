@@ -55,7 +55,7 @@ export default {
 
   methods: {
     sortByUserName(users) {
-      this.isByUserNameDown = this.isByUserNameDown ? false : true;
+      this.isByUserNameDown = !this.isByUserNameDown;
 
       if (this.isByUserNameDown) {
         this.sortByUserNameDown(users);
@@ -107,7 +107,7 @@ export default {
     },
 
     sortByUserPhone(users) {
-      this.isByUserPhoneDown = this.isByUserPhoneDown ? false : true;
+      this.isByUserPhoneDown = !this.isByUserPhoneDown;
 
       if (this.isByUserPhoneDown) {
         this.sortByUserPhoneDown(users);
