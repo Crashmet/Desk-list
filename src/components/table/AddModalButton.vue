@@ -1,11 +1,7 @@
 <template>
-    <button
-      @click="handelShowModal"
-      class="add-btn"
-    >
-      {{ isShowModal ? "Отменить" : "Добавить" }}
-    </button>
-  </div>
+  <button @click="handelShowModal" class="add-btn">
+    {{ isShowModal ? "Отменить" : "Добавить" }}
+  </button>
 </template>
 
 <script>
@@ -14,20 +10,18 @@ export default {
   props: {
     isShowModal: {
       type: Boolean
-    },
+    }
   },
   methods: {
     handelShowModal() {
-      this.$emit('handelShowModal', this.isShowModal)
+      this.$emit("handelShowModal", this.isShowModal);
     }
-
   }
-}
+};
 </script>
 
 <style scoped>
-
-.add-btn{
+.add-btn {
   margin-bottom: 30px;
   padding: 12px 20px;
   color: white;
@@ -42,5 +36,4 @@ export default {
 .add-btn:active {
   background: #328136;
 }
-
 </style>
