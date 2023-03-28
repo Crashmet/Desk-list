@@ -1,9 +1,9 @@
 <template>
-  <Fragment v-if="user.subordinates">
+  <Fragment>
     <tr>
       <td :style="indent">
         <div class="table-name">
-          <span v-if="depth > 0" class="table-name__child"></span>
+          <span v-if="isUserSubordinates" class="table-name__child"></span>
           {{ userName }}
         </div>
       </td>
@@ -38,6 +38,9 @@ export default {
     }
   },
   computed: {
+    isUserSubordinates() {
+      return this.user.subordinates.length > 0 || this.depth > 0;
+    },
     userName() {
       return this.user.marker + " " + this.user.name;
     },
