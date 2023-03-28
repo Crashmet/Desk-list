@@ -171,14 +171,13 @@ export default {
 }
 
 .form-header__button {
-  text-transform: uppercase;
   outline: 0;
   background: #e13d3d;
-  width: 10%;
-  height: 10%;
+  padding: 10px 15px;
   border: 0;
   color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: bold;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
@@ -215,6 +214,7 @@ export default {
   padding: 12px;
   color: #ffffff;
   font-size: 14px;
+  font-weight: bold;
   -webkit-transition: all 0.3 ease;
   transition: all 0.3 ease;
   cursor: pointer;
