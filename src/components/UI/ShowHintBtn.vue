@@ -1,15 +1,15 @@
 <template>
-  <button @click="handelResetSort" class="btn">
-    Сбросить сортировку
+  <button @click="handelShowHintBtn" class="btn">
+    "?"
   </button>
 </template>
 
 <script>
 export default {
-  name: "ResetSortButton",
+  name: "ShowHintBtn",
   methods: {
-    handelResetSort() {
-      this.$emit("handelResetSort");
+    handelShowHintBtn() {
+      this.$emit("handelShowHintBtn");
     }
   }
 };
@@ -17,11 +17,9 @@ export default {
 
 <style scoped>
 .btn {
-  width: 100%;
-  max-height: 34px;
-  padding: 8px 20px;
+  padding: 16px 20px;
   color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   background-color: #684caf;
   border: 1px solid #ccc;

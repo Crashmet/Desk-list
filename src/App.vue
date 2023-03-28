@@ -1,10 +1,21 @@
 <template>
   <div id="app" class="container">
-    <h1 class="header-title">Список</h1>
-    <add-modal-button
-      :isShowModal="isShowModal"
-      @handelShowModal="handelShowModal"
-    />
+    <div class="header">
+      <h1 class="header-title">Список</h1>
+      <show-hint-btn @handelShowHintBtn="handelShowHintBtn" />
+    </div>
+
+    <div class="add-modal__btn">
+      <add-modal-button
+        :isShowModal="isShowModal"
+        @handelShowModal="handelShowModal"
+      />
+      <div v-if="isTooltipAddBtnAdded">
+        <tooltip-add-button
+          @handleCloseTooltip="handleCloseTooltip('isTooltipAddBtnAdded')"
+        />
+      </div>
+    </div>
 
     <Modal
       v-if="isShowModal"
@@ -12,7 +23,12 @@
       @addNewUser="addNewUser"
       @handelCloseModal="isShowModal = false"
     />
-    <div>
+    <div class="table">
+      <div v-if="isTooltipSortBtnAdded">
+        <tooltip-sort-button
+          @handleCloseTooltip="handleCloseTooltip('isTooltipSortBtnAdded')"
+        />
+      </div>
       <Table
         :users="dataUsers"
         :isByUserNameDown="isByUserNameDown"
@@ -27,16 +43,21 @@
 
 <script>
 import AddModalButton from "./components/UI/AddModalButton.vue";
-
+import ShowHintBtn from "./components/UI/ShowHintBtn.vue";
 import Table from "./components/table/Table.vue";
 import Modal from "./components/Modal/Modal.vue";
+import TooltipAddButton from "./components/Tooltip/TooltipAddButton.vue";
+import TooltipSortButton from "./components/Tooltip/TooltipSortButton.vue";
 
 export default {
   name: "App",
   components: {
     AddModalButton,
+    ShowHintBtn,
     Table,
-    Modal
+    Modal,
+    TooltipAddButton,
+    TooltipSortButton
   },
 
   data() {
@@ -44,6 +65,11 @@ export default {
       isShowModal: false,
       isByUserNameDown: false,
       isByUserPhoneDown: false,
+
+      isTooltipAddBtnAdded: false,
+      isTooltipSortBtnAdded: false,
+
+      classBlur: "filter: blur(10px)",
 
       dataUsers: []
     };
@@ -58,6 +84,15 @@ export default {
   },
 
   methods: {
+    handleCloseTooltip(name) {
+      this[name] = false;
+    },
+
+    handelShowHintBtn() {
+      this.isTooltipAddBtnAdded = true;
+      this.isTooltipSortBtnAdded = true;
+    },
+
     handelResetSort() {
       this.resetSort(this.dataUsers);
 
@@ -242,13 +277,26 @@ export default {
   text-align: center;
 }
 
-.header-title {
-  font-size: 60px;
-  margin-bottom: 50px;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 70px;
 }
 
-.users-table {
-  display: flex;
-  flex-direction: column;
+.header-title {
+  font-size: 60px;
+  margin-right: 40px;
+}
+
+.add-modal__btn {
+  display: inline-block;
+  position: relative;
+  margin-bottom: 100px;
+}
+
+.table {
+  position: relative;
+  margin-bottom: 30px;
 }
 </style>

@@ -91,6 +91,10 @@ export default {
 </script>
 
 <style scoped>
+.users-table {
+  width: 100%;
+}
+
 table {
   margin-bottom: 20px;
   width: 100%;
