@@ -39,7 +39,7 @@ export default {
       return this.user.marker + " " + this.user.name;
     },
     indent() {
-      return { "padding-left": `${this.depth * 20 + 16}px` };
+      return { "padding-left": `${this.depth * 40 + 16}px` };
     }
   }
 };
