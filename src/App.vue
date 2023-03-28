@@ -69,8 +69,6 @@ export default {
       isTooltipAddBtnAdded: false,
       isTooltipSortBtnAdded: false,
 
-      classBlur: "filter: blur(10px)",
-
       dataUsers: []
     };
   },
@@ -297,6 +295,6 @@ export default {
 
 .table {
   position: relative;
-  margin-bottom: 30px;
+  margin-bottom: 120px;
 }
 </style>

@@ -4,9 +4,9 @@
     <button @click="handleCloseTooltip" class="close"></button>
 
    
-        <p>"Кликните по вверхней <span class="text__color_purple">фиолетовой</span> кнопке что бы сбросить сортировку."
+        <p>"Кликните по вверхней <span class="text__color_purple">фиолетовой</span> кнопке чтобы сбросить сортировку."
         </br>
-        "Кликайте по <span class="text__color_green">зеленый</span>  кнопкам что бы отсортировать список"</p>
+        "Кликайте по <span class="text__color_green">зеленым</span>  кнопкам чтобы отсортировать список"</p>
     
   </div>
 </template>
