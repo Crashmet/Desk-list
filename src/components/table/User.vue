@@ -8,7 +8,7 @@
         </div>
       </td>
       <td>
-        {{ user.phone }}
+        <span class="table-phone">{{ user.phone }}</span>
       </td>
     </tr>
     <User
@@ -52,8 +52,17 @@ export default {
 </script>
 
 <style scoped>
+th,
+td {
+  width: 60%;
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  text-align: left;
+}
+
 .table-name {
   position: relative;
+
   padding: 10px;
   padding-left: 30px;
   white-space: nowrap;
@@ -62,11 +71,8 @@ export default {
   text-overflow: ellipsis;
 }
 
-th,
-td {
-  border: 1px solid #ccc;
-  padding: 8px 15px;
-  text-align: left;
+.table-phone {
+  padding-left: 30px;
 }
 
 .table-name__child {

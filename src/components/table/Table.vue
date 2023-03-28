@@ -95,6 +95,7 @@ td {
 }
 th {
   position: relative;
+  padding-left: 45px;
   background-color: #4caf50;
   color: white;
   font-weight: bold;
@@ -105,11 +106,6 @@ th:active,
 th:focus {
   background: #328136;
 }
-
-.table-title {
-  margin-left: 15px;
-}
-
 .js-table-sort-neutral {
   position: absolute;
   background-image: none;
