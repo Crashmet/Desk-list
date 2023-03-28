@@ -2,7 +2,10 @@
   <Fragment v-if="user.subordinates">
     <tr>
       <td :style="indent">
-        <div class="table-name">{{ userName }}</div>
+        <div class="table-name">
+          <span v-if="depth > 0" class="table-name__child"></span>
+          {{ userName }}
+        </div>
       </td>
       <td>
         {{ user.phone }}
@@ -47,7 +50,9 @@ export default {
 
 <style scoped>
 .table-name {
+  position: relative;
   padding: 10px;
+  padding-left: 30px;
   white-space: nowrap;
   overflow: hidden;
   -o-text-overflow: ellipsis;
@@ -59,5 +64,17 @@ td {
   border: 1px solid #ccc;
   padding: 8px 15px;
   text-align: left;
+}
+
+.table-name__child {
+  position: absolute;
+  background-image: none;
+  bottom: 38%;
+  left: 0%;
+  width: 6.5px;
+  height: 6.5px;
+  border: 2px solid;
+  border-color: transparent transparent #328136 #328136;
+  transform: rotate(-135deg);
 }
 </style>
