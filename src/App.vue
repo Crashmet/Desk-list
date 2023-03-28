@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="container">
-    <h1 class="header-title">Список родителей</h1>
+    <h1 class="header-title">Список</h1>
     <add-modal-button
       :isShowModal="isShowModal"
       @handelShowModal="handelShowModal"
