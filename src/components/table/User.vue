@@ -1,30 +1,45 @@
 <template>
-  <tr>
-    <td>
-      <div class="table-name">{{ userName }}</div>
-
-      <User v-for="user in user.subordinates" :key="user.id" :user="user" />
-    </td>
-    <td>
-      {{ user.phone }}
-    </td>
-  </tr>
+  <Fragment v-if="user.subordinates">
+    <tr>
+      <td :style="indent">
+        <div class="table-name">{{ userName }}</div>
+      </td>
+      <td>
+        {{ user.phone }}
+      </td>
+    </tr>
+    <User
+      v-for="user in user.subordinates"
+      :key="user.id"
+      :user="user"
+      :depth="depth + 1"
+    />
+  </Fragment>
 </template>
 
 <script>
-import { computed } from "vue";
+import { Fragment } from "vue-fragment";
+
 export default {
   name: "User",
-  components: {},
+  components: {
+    Fragment
+  },
   props: {
     user: {
       type: Object,
       default: () => ({})
+    },
+    depth: {
+      type: Number
     }
   },
   computed: {
     userName() {
       return this.user.marker + " " + this.user.name;
+    },
+    indent() {
+      return { "padding-left": `${this.depth * 20 + 16}px` };
     }
   }
 };
@@ -33,6 +48,10 @@ export default {
 <style scoped>
 .table-name {
   padding: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
 }
 
 th,

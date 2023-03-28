@@ -12,7 +12,9 @@
         </th>
       </tr>
 
-      <User v-for="user in users" :key="user.id" :user="user" />
+      <tbody :key="parentKey">
+        <User v-for="user in users" :key="user.id" :user="user" :depth="0" />
+      </tbody>
     </table>
   </div>
 </template>
@@ -39,7 +41,9 @@ export default {
   data() {
     return {
       chevronNameClass: "js-table-sort-neutral",
-      chevronPhoneClass: "js-table-sort-neutral"
+      chevronPhoneClass: "js-table-sort-neutral",
+
+      parentKey: "parent"
     };
   },
 
@@ -57,12 +61,20 @@ export default {
       this.chevronNameClass = this.isByUserNameDown
         ? "js-table-sort-down"
         : "js-table-sort-up";
+
+      this.chevronPhoneClass = "js-table-sort-neutral";
     },
 
     isByUserPhoneDown() {
       this.chevronPhoneClass = this.isByUserPhoneDown
         ? "js-table-sort-down"
         : "js-table-sort-up";
+
+      this.chevronNameClass = "js-table-sort-neutral";
+    },
+
+    users() {
+      this.parentKey = Math.random();
     }
   }
 };
