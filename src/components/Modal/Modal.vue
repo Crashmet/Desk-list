@@ -80,10 +80,24 @@ export default {
   },
 
   created() {
-    this.setAllUsers(this.users);
+    this.getAllUsers(this.users);
   },
 
   methods: {
+    getAllUsers(users) {
+      this.allUsers = [];
+
+      this.setAllUsers(users);
+
+      this.sortAllUsersArr(this.allUsers);
+    },
+
+    sortAllUsersArr(users) {
+      users.sort((a, b) => {
+        return a.marker.localeCompare(b.marker);
+      });
+    },
+
     setAllUsers(users) {
       users.map(el => {
         if (el.subordinates.length > 0) {
@@ -139,8 +153,7 @@ export default {
       this.phone = "";
       this.chief = null;
 
-      this.allUsers = [];
-      this.setAllUsers(this.users);
+      this.getAllUsers(this.users);
     }
   }
 };
