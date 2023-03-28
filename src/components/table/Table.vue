@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="users-table">
+    <reset-sort-button @handelResetSort="handelResetSort" />
     <table>
       <tr>
         <th @click="sortByUserName">
@@ -21,11 +22,13 @@
 
 <script>
 import User from "./User.vue";
+import ResetSortButton from "../UI/ResetSortButton.vue";
 
 export default {
   name: "Table",
   components: {
-    User
+    User,
+    ResetSortButton
   },
   props: {
     users: {
@@ -48,6 +51,13 @@ export default {
   },
 
   methods: {
+    handelResetSort() {
+      this.$emit("handelResetSort");
+
+      this.chevronPhoneClass = "js-table-sort-neutral";
+      this.chevronNameClass = "js-table-sort-neutral";
+    },
+
     sortByUserName() {
       this.$emit("sortByUserName", this.users);
     },

@@ -12,20 +12,24 @@
       @addNewUser="addNewUser"
       @handelCloseModal="isShowModal = false"
     />
-    <Table
-      :users="dataUsers"
-      :isByUserNameDown="isByUserNameDown"
-      :isByUserPhoneDown="isByUserPhoneDown"
-      @sortByUserName="sortByUserName"
-      @sortByUserPhone="sortByUserPhone"
-    />
+    <div>
+      <Table
+        :users="dataUsers"
+        :isByUserNameDown="isByUserNameDown"
+        :isByUserPhoneDown="isByUserPhoneDown"
+        @sortByUserName="sortByUserName"
+        @sortByUserPhone="sortByUserPhone"
+        @handelResetSort="handelResetSort"
+      />
+    </div>
   </div>
 </template>
 
 <script>
-import AddModalButton from "./components/table/AddModalButton.vue";
+import AddModalButton from "./components/UI/AddModalButton.vue";
+
 import Table from "./components/table/Table.vue";
-import Modal from "./components/table/Modal.vue";
+import Modal from "./components/Modal/Modal.vue";
 
 export default {
   name: "App",
@@ -54,6 +58,33 @@ export default {
   },
 
   methods: {
+    handelResetSort() {
+      this.resetSort(this.dataUsers);
+
+      this.updateLocalStorage();
+    },
+
+    resetSort(users) {
+      if (users.length === 1) {
+        if (users[0].subordinates.length > 0) {
+          this.resetSort(users[0].subordinates);
+        }
+        return;
+      }
+
+      users.sort((a, b) => {
+        if (a.subordinates.length > 0) {
+          this.resetSort(a.subordinates);
+        }
+
+        if (b.subordinates.length > 0) {
+          this.resetSort(b.subordinates);
+        }
+
+        return a.marker.localeCompare(b.marker);
+      });
+    },
+
     sortByUserName(users) {
       this.isByUserNameDown = !this.isByUserNameDown;
 
@@ -212,7 +243,12 @@ export default {
 }
 
 .header-title {
-  font-size: 40px;
-  margin-bottom: 60px;
+  font-size: 60px;
+  margin-bottom: 50px;
+}
+
+.users-table {
+  display: flex;
+  flex-direction: column;
 }
 </style>

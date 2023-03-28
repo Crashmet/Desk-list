@@ -27,7 +27,7 @@ export default {
 
 <style scoped>
 .add-btn {
-  margin-bottom: 30px;
+  margin-bottom: 100px;
   padding: 12px 20px;
   color: white;
   font-size: 16px;
