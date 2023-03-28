@@ -2,12 +2,14 @@
   <div class="tooltip-container">
     <h1>Руководство по управлению таблицей</h1>
     <button @click="handleCloseTooltip" class="close"></button>
-
-   
-        <p>"Кликните по вверхней <span class="text__color_purple">фиолетовой</span> кнопке чтобы сбросить сортировку."
-        </br>
-        "Кликайте по <span class="text__color_green">зеленым</span>  кнопкам чтобы отсортировать список"</p>
-    
+    <p>
+      "Кликните по вверхней
+      <span class="text__color_purple">фиолетовой</span> кнопке чтобы сбросить
+      сортировку."
+      <br />
+      "Кликайте по <span class="text__color_green">зеленым</span> кнопкам чтобы
+      отсортировать список"
+    </p>
   </div>
 </template>
 
@@ -84,7 +86,7 @@ h1 {
   border-color: rgba(0, 0, 0, 0) #f3f3f3 rgba(0, 0, 0, 0) rgba(0, 0, 0, 0);
 }
 .tooltip-container p {
-  padding: 10px 20px 20px;
+  padding: 5px 20px 20px;
   max-width: 350px;
   font-size: 16px;
   color: #767678;
@@ -94,17 +96,17 @@ h1 {
   margin: 0;
 }
 
-.text__color_purple{
+.text__color_purple {
   padding: 5px;
   font-size: 17px;
   color: #fff;
   background: #684caf;
 }
 
-.text__color_green{
+.text__color_green {
   padding: 5px;
   font-size: 17px;
   color: #fff;
-  background: #328136;;
+  background: #328136;
 }
 </style>

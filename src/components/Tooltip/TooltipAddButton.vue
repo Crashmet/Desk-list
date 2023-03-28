@@ -2,7 +2,6 @@
   <div class="tooltip-container">
     <h1>Руководство по управлению таблицей</h1>
     <button @click="handleCloseTooltip" class="close"></button>
-
     <p>
       "Кликните по этой <span class="text__color_green">кнопке</span> что бы
       добавить нового пользователя"
@@ -84,7 +83,7 @@ h1 {
   transform: rotate(180deg);
 }
 .tooltip-container p {
-  padding: 10px 20px 20px;
+  padding: 8px 20px 20px;
   max-width: 350px;
   font-size: 16px;
   color: #767678;
