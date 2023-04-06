@@ -1,6 +1,26 @@
-# vue-test
+# Desk – приложение для поиска добавление и персонала и их данных
 
-> Vue.js project - [Click to see exercise](https://docs.google.com/document/d/1Crkyr_BYp0wX2SPvsWx0ElkFWJQ5VINyCSsmd7vU8kw/edit#heading=h.kah3mu76yu2a)
+# Демо
+
+### [Landing](https://crashmet.github.io/Desk-list/dist)
+### [Тех. Задание](https://docs.google.com/document/d/1Crkyr_BYp0wX2SPvsWx0ElkFWJQ5VINyCSsmd7vU8kw/edit#heading=h.kah3mu76yu2a)
+
+## Используемые библиотеки
+
+- [Vue](https://vuejs.org/)
+- [uuid](https://www.npmjs.com/package/uuid)
+- [Vue-Fragment](https://www.npmjs.com/package/vue-fragment)
+
+
+## Реализовано:
+- Бесконечный уровень таблицы
+- Cортировка по подуровням
+- Кнопка сброса сортировки по умолчанию
+- Сохранение состояния в LocalStorage
+- Марировка вложенности
+- Мобальное окно добавление данных
+- Модальные окна подсказки
+
 
 
 
