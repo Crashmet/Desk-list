@@ -44,7 +44,7 @@
 <script>
 import AddModalButton from "./components/UI/AddModalButton.vue";
 import ShowHintBtn from "./components/UI/ShowHintBtn.vue";
-import Table from "./components/table/Table.vue";
+import Table from "./components/Table/Table.vue";
 import Modal from "./components/Modal/Modal.vue";
 import TooltipAddButton from "./components/Tooltip/TooltipAddButton.vue";
 import TooltipSortButton from "./components/Tooltip/TooltipSortButton.vue";
